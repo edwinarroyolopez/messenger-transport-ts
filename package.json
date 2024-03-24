@@ -1,0 +1,22 @@
+{
+  "name": "messenger-transport-ts",
+  "version": "1.0.0",
+  "description": "This is a project to admin messages flow",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.30",
+    "express": "^4.19.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
