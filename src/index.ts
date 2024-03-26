@@ -1,9 +1,12 @@
+require('./utils/load-env'); // load environment
+
 import express from 'express';
 import bodyParser from 'body-parser'; // Import body-parser
 import { v4 as uuidv4 } from 'uuid'; // Importamos uuid para generar IDs únicos
 import Notifier from './notifier';
 import { messageReceiver, messageReceiverMessage } from './messageReceiver';
 
+import { connLocal } from './utils/db';
 
 interface Message {
   _id: string | null;
@@ -18,6 +21,18 @@ const myNotifier = new Notifier();
 
 // Use body-parser middleware
 app.use(bodyParser.json());
+
+connLocal.on('connected', function () {
+  console.log('Local - mongodb connection established');
+});
+
+app.get('/', (req, res) => {
+  const notification = 'New notification: Hello World!';
+  myNotifier.sendNotification(notification);
+  res.send('home - transporter');
+});
+
+
 
 // Endpoint to send notifications
 app.get('/notify', (req, res) => {
